@@ -1,0 +1,50 @@
+Q1. The teachers table should have columns for teacher_id, first_name, last_name,
+    homeroom_number, department, email, and phone.
+    
+---ANSWER---
+CREATE TABLE Teachers(
+	teacher_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	lastt_name VARCHAR(50) NOT NULL,
+	home_rom_number SMALLSERIAL NOT NULL,
+  department VARCHAR(50) NOT NULL,
+	email VARCHAR(50) UNIQUE,
+	phone VARCHAR(50) UNIQUE);
+
+
+Q2. The students table should have columns for student_id, 
+    first_name,last_name, homeroom_number, phone,email, and graduation year.
+----ANSWER----
+CREATE TABLE Students(
+	student_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	lastt_name VARCHAR(50) NOT NULL,
+	home_rom_number SMALLSERIAL NOT NULL,
+	email VARCHAR(50) UNIQUE,
+	phone VARCHAR(50) UNIQUE,
+	graduation_year DATE NOT NULL);
+
+Q3.Once you've made the tables, insert a student named Mark Watney (student_id=1) who has a phone number of 777-555-1234 
+  and doesn't have an email. He graduates in 2035 and has 5 as a homeroom number.
+----ANSWER----
+INSERT INTO Students(
+	first_name,
+	lastt_name,
+	home_rom_number,
+	email,
+	phone,
+	graduation_year)
+	VALUES
+	('Mark', 'Watney', '5','NA','77755512','2035-12-31');
+
+Q5. Then insert a teacher names Jonas Salk (teacher_id = 1) who as a homeroom number of 5 and is from the Biology department. 
+    His contact info is: jsalk@school.org and a phone number of 777-555-4321.
+----ANSWER----
+INSERT INTO TEachers(
+	first_name,
+	lastt_name,
+	home_rom_number,
+	email,department,
+	phone)
+	VALUES
+	(JONAS', 'Salk', '5','jsalk@school.org ','Biology','7775554321');
