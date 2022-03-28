@@ -1,0 +1,23 @@
+----QUESTION----
+Find emails of customers who live in california
+----ANSWER----
+SELECT address.address_id,email,district
+FROM customer
+FULL OUTER JOIN address ON
+customer.address_id=address.address_id
+WHERE district ILIKE ('California')
+ORDER BY address.address_id;
+
+
+
+----QUESTION----
+List of the movies with nick Wahlberg
+----ANSWER----
+MULTIPLE TABLE JOIN	SELECT film.film_id,first_name,last_name,actor.actor_id,title
+FROM film_actor
+FULL OUTER JOIN actor ON
+film_actor.actor_id=actor.actor_id
+FULL OUTER JOIN film ON
+film.film_id=film_actor.film_id
+WHERE first_name ILIKE ('nick') AND last_name ILIKE ('wahlberg')
+ORDER BY film_id;
