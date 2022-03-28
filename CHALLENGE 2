@@ -1,0 +1,68 @@
+-----QUESTION----
+Staff members with staff id 1 and 2. Give bonus to the one who handled most payments, not in dollars but in number of payments handled. How many did each staff handle and who deserves the bonus?	
+-------------------------------ANSWER-------------------------------------------
+SELECT staff_id,COUNT(amount) FROM payment
+GROUP BY staff_id
+ORDER BY sum(amount);
+
+-----QUESTION----
+Hq conducting study on relationship between replacement cost and movie mpaa rating. What is the average replacement cost per mpaa rating?	
+-------------------------------ANSWER-------------------------------------------
+SELECT (rating), AVG(replacement_cost) FROM film
+GROUP BY rating;
+
+-----QUESTION----
+Same answer in 3 decimal places
+-------------------------------ANSWER-------------------------------------------
+SELECT (rating), ROUND(AVG(replacement_cost),3) FROM film
+GROUP BY rating;
+
+-----QUESTION----
+Promotion to reward top 5 customer with coupons, what are the customer ids of the top 5 customers who spend most?	
+-------------------------------ANSWER-------------------------------------------
+SELECT customer_id, SUM(amount) FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount) desc
+LIMIT 5
+
+-----QUESTION----
+Customer ids with more than 40 transactions
+-------------------------------ANSWER-------------------------------------------
+SELECT customer_id, SUM(amount) FROM payment
+GROUP BY customer_id
+HAVING SUM(amount)>=40
+ORDER BY SUM(amount) desc
+
+-----QUESTION----
+Customer ids of people who spent more than 100 dollars and dealt with staff id 2	
+-------------------------------ANSWER-------------------------------------------
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+WHERE staff_id IN (2)
+GROUP BY customer_id, staff_id 
+HAVING SUM(amount)>100
+ORDER BY SUM(amount) desc;
+
+-----QUESTION----
+Return the customer IDs of customers who have spent at least $110 with the staff member who has an ID of 2.
+The answer should be customers 187 and 148
+-------------------------------ANSWER-------------------------------------------
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+WHERE staff_id =(2)
+GROUP BY customer_id, staff_id 
+HAVING SUM(amount)>110
+ORDER BY SUM(amount) desc;
+
+-----QUESTION----
+How many films begin with the letter J?The answer should be 20
+-------------------------------ANSWER-------------------------------------------
+SELECT count(film_id) FROM film
+WHERE title ILIKE 'J%';
+
+-----QUESTION----
+What customer has the highest customer ID number whose name starts with an 'E' and has an address ID lower than 500?
+The answer is Eddie Tomlin
+-------------------------------ANSWER-------------------------------------------
+SELECT customer_id,first_name, last_name FROM customer
+WHERE first_name ILIKE 'E%' AND address_id<500
+ORDER BY customer_id DESC
+LIMIT 1;
